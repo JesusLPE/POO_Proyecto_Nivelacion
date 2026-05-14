@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Bienvenido, {{ usuario.nombre }}</h1>
+<p>Estás viendo la plataforma en modo <strong>{{ rol_vista | capitalize }}</strong>.</p>
+
+{% if rol_vista == 'estudiante' %}
+    <h2>Tareas pendientes</h2>
+    {% if tareas %}
+        <ul>
+        {% for t in tareas %}
+            <li><strong>{{ t.titulo }}</strong>: {{ t.descripcion }} (Fecha límite: {{ t.fecha_limite }})</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay tareas asignadas.</p>
+    {% endif %}
+
+    <h2>Mis entregas</h2>
+    {% if mis_entregas %}
+        <ul>
+        {% for entrega in mis_entregas %}
+            <li>{{ entrega.titulo }} - Archivo: {{ entrega.archivo }} ({{ entrega.fecha }})</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aún no has subido tareas.</p>
+    {% endif %}
+{% else %}
+    <h2>Gestión académica</h2>
+    <p>Aquí podrías ver listados de estudiantes, crear tareas, etc. (funcionalidad ampliable).</p>
+    <h3>Tareas existentes</h3>
+    <ul>
+    {% for t in tareas %}
+        <li>{{ t.titulo }} - Creada por: {{ t.creador_email }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

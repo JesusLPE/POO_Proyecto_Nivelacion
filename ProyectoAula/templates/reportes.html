@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Reporte de Rendimiento</h1>
+<p>{{ reporte }}</p>
+<table border="1">
+    <tr><th>Estudiante</th><th>Promedio</th></tr>
+    {% for nombre, promedio in datos %}
+    <tr><td>{{ nombre }}</td><td>{{ promedio }}</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
