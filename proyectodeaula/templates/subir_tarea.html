@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Subir Tarea</h1>
+<form method="post" enctype="multipart/form-data">
+    <label>Título:</label>
+    <input type="text" name="titulo" required>
+    <label>Descripción (opcional):</label>
+    <textarea name="descripcion"></textarea>
+    <label>Archivo:</label>
+    <input type="file" name="archivo" required>
+    <button type="submit">Subir</button>
+</form>
+{% endblock %}
