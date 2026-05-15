@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Mi Perfil</h1>
+
+{% if current_user.obtener_rol() == 'coordinador' %}
+    <p class="info-fase"><strong>Modo coordinador:</strong> Puedes modificar los datos del usuario (simulación Fase 1).</p>
+    <form method="post">
+        <div class="form-group">
+            <label>Nombre:</label>
+            <input type="text" name="nombre" value="{{ current_user.nombre }}">
+        </div>
+        <div class="form-group">
+            <label>Apellido:</label>
+            <input type="text" name="apellido" value="{{ current_user.apellido }}">
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="email" value="{{ current_user.email }}">
+        </div>
+        {% if current_user.obtener_rol() == 'estudiante' %}
+        <div class="form-group">
+            <label>Carrera:</label>
+            <input type="text" name="carrera" value="{{ current_user.carrera }}">
+        </div>
+        {% endif %}
+        <button type="submit">Actualizar perfil</button>
+    </form>
+{% else %}
+    <p><strong>Nombre:</strong> {{ current_user.nombre }}</p>
+    <p><strong>Apellido:</strong> {{ current_user.apellido }}</p>
+    <p><strong>Correo electrónico:</strong> {{ current_user.email }}</p>
+    {% if current_user.obtener_rol() == 'estudiante' %}
+        <p><strong>Carrera:</strong> {{ current_user.carrera if current_user.carrera else 'No asignada' }}</p>
+    {% endif %}
+    <p><em>Solo el coordinador puede modificar los datos.</em></p>
+{% endif %}
+{% endblock %}
