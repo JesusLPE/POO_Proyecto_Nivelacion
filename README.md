@@ -1,1 +1,1 @@
-# POO Proyecto Sistema de Admision del Proceso de Nivelación
+# Proyecto Sistema de Admision del Proceso de Nivelación
