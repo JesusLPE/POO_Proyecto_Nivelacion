@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Mi Perfil</h1>
+
+
+<form method="post">
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ usuario.nombre }}"
+               {% if usuario.obtener_rol() != 'estudiante' %}disabled{% endif %}>
+    </div>
+
+    <div class="form-group">
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" value="{{ usuario.apellido }}"
+               {% if usuario.obtener_rol() != 'estudiante' %}disabled{% endif %}>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" value="{{ usuario.email }}" disabled>
+    </div>
+
+    {% if usuario.obtener_rol() == 'estudiante' %}
+    <div class="form-group">
+        <label for="carrera">Carrera:</label>
+        <input type="text" id="carrera" name="carrera" value="{{ usuario.carrera }}">
+    </div>
+    <button type="submit" class="btn-subir">Actualizar perfil</button>
+    {% else %}
+    <div class="form-group">
+        <label for="rol">Rol:</label>
+        <input type="text" id="rol" value="{{ usuario.obtener_rol() | capitalize }}" disabled>
+    </div>
+    <p><em>Los datos solo pueden ser modificados por el estudiante.</em></p>
+    {% endif %}
+</form>
+{% endblock %}
