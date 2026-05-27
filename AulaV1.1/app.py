@@ -88,7 +88,7 @@ class SistemaAcademicoApp:
     def _mostrar_info(self, mensaje):
         messagebox.showinfo("Información", mensaje)
 
-    # ---------------------- INICIO DE SESIÓN ----------------------
+    # INICIO DE SESIÓN 
     def show_login(self):
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -127,7 +127,8 @@ class SistemaAcademicoApp:
         else:
             self._mostrar_error("Credenciales incorrectas")
 
-    # ---------------------- PANEL PRINCIPAL ----------------------
+    # PANEL PRINCIPAL 
+
     def show_main_panel(self):
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -155,13 +156,13 @@ class SistemaAcademicoApp:
             self.current_user = None
             self.show_login()
 
-    # ---------------------- PANEL ESTUDIANTE ----------------------
+    # PANEL ESTUDIANTE 
     def panel_estudiante(self):
         notebook = ttk.Notebook(self.root)
         notebook.pack(fill="both", expand=True, padx=10, pady=10)
 
         frame_timeline = ttk.Frame(notebook)
-        notebook.add(frame_timeline, text="📅 Línea de tiempo")
+        notebook.add(frame_timeline, text=" Línea de tiempo")
         self.show_timeline(frame_timeline, "estudiante")
 
         frame_cursos = ttk.Frame(notebook)
@@ -176,7 +177,7 @@ class SistemaAcademicoApp:
         notebook.add(frame_poo, text="Conceptos POO")
         self.show_poo_demo(frame_poo)
 
-    # ---------------------- PANEL DOCENTE ----------------------
+    # PANEL DOCENTE
     def panel_docente(self):
         main_frame = ttk.Frame(self.root)
         main_frame.pack(fill="both", expand=True, padx=10, pady=10)
@@ -188,12 +189,12 @@ class SistemaAcademicoApp:
         right_frame = ttk.LabelFrame(main_frame, text="Acciones rápidas", padding=10)
         right_frame.pack(side="right", fill="y", padx=5, pady=5)
 
-        ttk.Button(right_frame, text="📝 Registrar nota", command=self.registrar_nota, width=20).pack(pady=5)
-        ttk.Button(right_frame, text="📄 Crear tarea", command=self.crear_tarea, width=20).pack(pady=5)
-        ttk.Button(right_frame, text="📋 Ver entregas", command=self.ver_entregas_ventana, width=20).pack(pady=5)
-        ttk.Button(right_frame, text="🎓 Mis cursos", command=self.mis_cursos_docente, width=20).pack(pady=5)
-        ttk.Button(right_frame, text="👤 Mi Perfil", command=lambda: self.ver_perfil_en_ventana(), width=20).pack(pady=5)
-        ttk.Button(right_frame, text="💡 Conceptos POO", command=lambda: self.ver_poo_en_ventana(), width=20).pack(pady=5)
+        ttk.Button(right_frame, text=" Registrar nota", command=self.registrar_nota, width=20).pack(pady=5)
+        ttk.Button(right_frame, text=" Crear tarea", command=self.crear_tarea, width=20).pack(pady=5)
+        ttk.Button(right_frame, text=" Ver entregas", command=self.ver_entregas_ventana, width=20).pack(pady=5)
+        ttk.Button(right_frame, text=" Mis cursos", command=self.mis_cursos_docente, width=20).pack(pady=5)
+        ttk.Button(right_frame, text=" Mi Perfil", command=lambda: self.ver_perfil_en_ventana(), width=20).pack(pady=5)
+        ttk.Button(right_frame, text=" Conceptos POO", command=lambda: self.ver_poo_en_ventana(), width=20).pack(pady=5)
 
     def ver_perfil_en_ventana(self):
         ventana = self._crear_ventana_secundaria("Mi Perfil", 500, 400)
@@ -207,7 +208,7 @@ class SistemaAcademicoApp:
         ventana = self._crear_ventana_secundaria("Entregas de estudiantes", 700, 500)
         self.show_entregas(ventana)
 
-    # ---------------------- PANEL COORDINADOR ----------------------
+    # PANEL COORDINADOR
     def panel_coordinador(self):
         notebook = ttk.Notebook(self.root)
         notebook.pack(fill="both", expand=True, padx=10, pady=10)
@@ -233,7 +234,8 @@ class SistemaAcademicoApp:
         ttk.Button(parent, text="Gestionar horarios y modalidades", command=self.gestionar_horarios).pack(pady=5, fill='x')
         ttk.Button(parent, text="Ver entregas de tareas", command=lambda: self.ver_entregas_ventana()).pack(pady=5, fill='x')
 
-    # ---------------------- PANEL ADMINISTRADOR ----------------------
+    # PANEL ADMINISTRADOR
+
     def panel_administrador(self):
         notebook = ttk.Notebook(self.root)
         notebook.pack(fill="both", expand=True, padx=10, pady=10)
@@ -261,7 +263,8 @@ class SistemaAcademicoApp:
         ttk.Button(parent, text="Gestionar asignaturas", command=self.gestionar_asignaturas).pack(pady=5, fill='x')
         ttk.Button(parent, text="Gestionar matrículas", command=self.gestionar_matriculas).pack(pady=5, fill='x')
 
-    # ---------------------- FUNCIONES COMPARTIDAS ----------------------
+    # FUNCIONES COMPARTIDAS
+
     def show_perfil(self, parent):
         user = self.current_user
         ttk.Label(parent, text="Información personal", font=("Arial", 12, "bold")).pack(pady=10)
