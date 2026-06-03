@@ -1,0 +1,18 @@
+[
+    {
+        "nombre": "Diocles",
+        "apellido": "Bacusoy",
+        "email": "diocles@gmail.com",
+        "password": "1234",
+        "matricula": "A001",
+        "carrera": "Ingeniería de Software"
+    },
+    {
+        "nombre": "Luna",
+        "apellido": "Salazar",
+        "email": "luna@gmail.com",
+        "password": "1234",
+        "matricula": "A002",
+        "carrera": "Enfermeria"
+    }
+]
