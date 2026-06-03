@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "nombre": "Programación Orientada a Objetos",
+        "horas": 64,
+        "creditos": 4,
+        "estado": "Activa"
+    },
+    {
+        "id": 2,
+        "nombre": "Bases de Datos Avanzadas",
+        "horas": 48,
+        "creditos": 3,
+        "estado": "Activa"
+    },
+    {
+        "id": 3,
+        "nombre": "Diseño de Algoritmos",
+        "horas": 64,
+        "creditos": 4,
+        "estado": "Activa"
+    }
+]
