@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "nombre": "Nivelación – Ingeniería en Sistemas A",
+        "duracion": 8,
+        "horas": 256,
+        "carrera": "Ingeniería en Sistemas",
+        "docente_email": "sofia.naranjo@nivelacion.edu.ec",
+        "horario": "Lunes 07:30-09:30",
+        "aula": "Lab. Informática 201",
+        "modalidad": "Presencial",
+        "plataforma": ""
+    },
+    {
+        "id": 2,
+        "nombre": "Nivelación – Medicina A",
+        "duracion": 8,
+        "horas": 256,
+        "carrera": "Medicina",
+        "docente_email": "roberto.espinoza@nivelacion.edu.ec",
+        "horario": "Sábado 07:00-11:00",
+        "aula": "Aula 304",
+        "modalidad": "Presencial",
+        "plataforma": ""
+    },
+    {
+        "id": 3,
+        "nombre": "Nivelación – Administración de Empresas A",
+        "duracion": 8,
+        "horas": 256,
+        "carrera": "Administración de Empresas",
+        "docente_email": "marco.villacis@nivelacion.edu.ec",
+        "horario": "Miércoles 14:00-16:00",
+        "aula": "Aula 110",
+        "modalidad": "Presencial",
+        "plataforma": ""
+    },
+    {
+        "id": 4,
+        "nombre": "Matemática General – Todos los grupos",
+        "duracion": 8,
+        "horas": 80,
+        "carrera": "",
+        "docente_email": "marco.villacis@nivelacion.edu.ec",
+        "horario": "Jueves 09:30-11:30",
+        "aula": "Aula Magna",
+        "modalidad": "Presencial",
+        "plataforma": ""
+    },
+    {
+        "id": 5,
+        "nombre": "Lengua y Comunicación – Todos los grupos",
+        "duracion": 8,
+        "horas": 64,
+        "carrera": "",
+        "docente_email": "diana.pacheco@nivelacion.edu.ec",
+        "horario": "Viernes 11:30-13:30",
+        "aula": "Aula Magna",
+        "modalidad": "Presencial",
+        "plataforma": ""
+    }
+]

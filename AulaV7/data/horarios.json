@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "curso_id": 2,
+        "curso": "Nivelación – Medicina A",
+        "dia": "Sábado",
+        "inicio": "07:00",
+        "fin": "11:00",
+        "modalidad": "Presencial",
+        "aula": "Aula 304"
+    }
+]
