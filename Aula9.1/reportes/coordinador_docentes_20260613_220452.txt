@@ -1,0 +1,15 @@
+Reporte: Docentes
+Rol: Coordinador
+Generado por: Coordinador
+Fecha: 13/06/2026 22:04:52
+================================================================================
+
+Reporte de docentes
+-------------------
+Docente | Asignaturas asignadas | Horarios de clases | Carga horaria
+--------------------------------------------------------------------------------
+Marco Villacís | Nivelación – Administración de Empresas A, Matemática General – Todos los grupos | Miércoles 14:00–16:00; Jueves 09:30–11:30 | 336 h
+Diana Pacheco | Lengua y Comunicación – Todos los grupos | Viernes 11:30–13:30 | 64 h
+Roberto Espinoza | Nivelación – Medicina A | Martes 07:30–09:30 | 256 h
+Sofía Naranjo | Nivelación – Ingeniería en Sistemas A | Lunes 07:30–09:30 | 256 h
+

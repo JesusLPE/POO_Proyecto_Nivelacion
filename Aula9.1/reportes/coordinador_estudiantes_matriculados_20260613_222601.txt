@@ -1,0 +1,21 @@
+Reporte: Estudiantes matriculados
+Rol: Coordinador
+Generado por: Coordinador
+Fecha: 13/06/2026 22:26:01
+================================================================================
+
+Reporte de estudiantes matriculados
+-----------------------------------
+Categoria | Detalle | Total
+--------------------------------------------------------------------------------
+Total inscritos | Estudiantes con matricula activa | 5
+Por paralelo | Nivelación – Ingeniería en Sistemas A | 2
+Por paralelo | Nivelación – Medicina A | 2
+Por paralelo | Nivelación – Administración de Empresas A | 2
+Por paralelo | Matemática General – Todos los grupos | 0
+Por paralelo | Lengua y Comunicación – Todos los grupos | 0
+Por carrera | Administración de Empresas | 2
+Por carrera | Artes Plásticas | 1
+Por carrera | Ingeniería en Sistemas | 2
+Por carrera | Medicina | 2
+

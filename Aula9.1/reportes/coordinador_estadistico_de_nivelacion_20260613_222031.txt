@@ -1,0 +1,15 @@
+Reporte: Estadistico de nivelacion
+Rol: Coordinador
+Generado por: Coordinador
+Fecha: 13/06/2026 22:20:31
+================================================================================
+
+Reporte estadistico de nivelacion
+---------------------------------
+Indicador | Valor
+--------------------------------------------------------------------------------
+Tasa de aprobacion | 66.67%
+Tasa de desercion | 0.0%
+Estudiantes que pasan al siguiente nivel | 4
+Estudiantes evaluados | 5
+
