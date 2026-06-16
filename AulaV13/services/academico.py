@@ -19,9 +19,37 @@ class AuthService:
         self._repo = repo
 
     def login(self, email: str, password: str):
-        user = self._repo.usuarios.get(email.strip())
-        if user and user.iniciarSesion(email.strip(), password):
+        # Intento rápido por clave exacta (optimización)
+        key = email.strip()
+        user = self._repo.usuarios.get(key)
+        if user and user.iniciarSesion(key, password):
             return user
+
+        # Si no hay coincidencia exacta, buscar de forma tolerante a mayúsculas
+        # y diacríticos para evitar problemas con "ñ" u otras variaciones.
+        try:
+            import unicodedata
+        except Exception:
+            unicodedata = None
+
+        def _norm(s: str) -> str:
+            if s is None:
+                return ""
+            s2 = s.strip()
+            if unicodedata:
+                s2 = unicodedata.normalize("NFKD", s2)
+                # eliminar marcas diacríticas
+                s2 = "".join(ch for ch in s2 if not unicodedata.combining(ch))
+            return s2.casefold()
+
+        target = _norm(email)
+        for u in self._repo.usuarios.values():
+            if _norm(u.email) == target:
+                # llamar con el email real del usuario para que Persona.iniciarSesion
+                # compare contra su valor interno; así solo la contraseña importa.
+                if u.iniciarSesion(u.email, password):
+                    return u
+                return None
         return None
 
     def email_disponible(self, email: str) -> bool:
