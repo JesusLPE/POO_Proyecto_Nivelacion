@@ -1,0 +1,478 @@
+[
+    {
+        "id": 1,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:26:54",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "0.0%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 2,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:29:24",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 3,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:29:27",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 4,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:29:28",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 5,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:29:29",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 6,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:57:17",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 7,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:57:26",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 8,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:57:27",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 9,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:57:28",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 10,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:57:33",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 11,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:58:15",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 12,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 17:58:17",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 13,
+        "tipo": "calificaciones",
+        "titulo": "Reporte de Calificaciones por Asignatura",
+        "subtitulo": "Resumen de notas y aprobaciones por asignatura",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 18:06:27",
+        "totales": [
+            [
+                "Calificaciones totales",
+                9
+            ],
+            [
+                "Aprobados",
+                8
+            ],
+            [
+                "Reprobados",
+                1
+            ],
+            [
+                "Promedio general",
+                "7.83"
+            ]
+        ],
+        "num_secciones": 2
+    },
+    {
+        "id": 14,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 18:06:37",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 15,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 18:06:38",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 16,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 18:06:38",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    },
+    {
+        "id": 17,
+        "tipo": "coordinador",
+        "titulo": "Reporte de métricas globales y rendimiento",
+        "subtitulo": "Proceso de Nivelación – Coordinación Académica",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 18:06:39",
+        "totales": [
+            [
+                "Tasa de aprobación",
+                "57.14%"
+            ],
+            [
+                "Tasa de deserción",
+                "5.56%"
+            ],
+            [
+                "Estudiantes evaluados",
+                5
+            ],
+            [
+                "Estudiantes que pasan de nivel",
+                4
+            ]
+        ],
+        "num_secciones": 4
+    }
+]
