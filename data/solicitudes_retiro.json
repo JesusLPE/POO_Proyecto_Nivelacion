@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "estudiante_id": "carlos.mendoza@nivelacion.edu.ec",
+        "materia_id": 1,
+        "motivo": "No puedo con esta materia",
+        "estado": "Aprobada",
+        "fecha": "2026-06-16 17:26:34",
+        "respuesta_coordinador": "Listo, chaooo{"
+    }
+]

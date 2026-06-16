@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "nombre": "Matemática para Nivelación",
+        "horas": 80,
+        "creditos": 5,
+        "estado": "Activa"
+    },
+    {
+        "id": 2,
+        "nombre": "Lengua y Comunicación",
+        "horas": 64,
+        "creditos": 4,
+        "estado": "Activa"
+    },
+    {
+        "id": 3,
+        "nombre": "Razonamiento Lógico",
+        "horas": 48,
+        "creditos": 3,
+        "estado": "Activa"
+    },
+    {
+        "id": 4,
+        "nombre": "Fundamentos de Programación",
+        "horas": 64,
+        "creditos": 4,
+        "estado": "Activa"
+    },
+    {
+        "id": 5,
+        "nombre": "Biología General",
+        "horas": 64,
+        "creditos": 4,
+        "estado": "Activa"
+    },
+    {
+        "id": 6,
+        "nombre": "Química Básica",
+        "horas": 48,
+        "creditos": 3,
+        "estado": "Activa"
+    },
+    {
+        "id": 7,
+        "nombre": "Introducción a la Economía",
+        "horas": 64,
+        "creditos": 4,
+        "estado": "Activa"
+    },
+    {
+        "id": 8,
+        "nombre": "Contabilidad Básica",
+        "horas": 48,
+        "creditos": 3,
+        "estado": "Activa"
+    }
+]

@@ -1,0 +1,30 @@
+[
+    {
+        "nombre": "Marco",
+        "apellido": "Villacís",
+        "email": "marco.villacis@nivelacion.edu.ec",
+        "password": "Docente2026",
+        "especialidad": "Matemáticas y Razonamiento Lógico"
+    },
+    {
+        "nombre": "Diana",
+        "apellido": "Pacheco",
+        "email": "diana.pacheco@nivelacion.edu.ec",
+        "password": "Docente2026",
+        "especialidad": "Lengua y Literatura"
+    },
+    {
+        "nombre": "Roberto",
+        "apellido": "Espinoza",
+        "email": "roberto.espinoza@nivelacion.edu.ec",
+        "password": "Docente2026",
+        "especialidad": "Ciencias Naturales y Biología"
+    },
+    {
+        "nombre": "Sofía",
+        "apellido": "Naranjo",
+        "email": "sofia.naranjo@nivelacion.edu.ec",
+        "password": "Docente2026",
+        "especialidad": "Fundamentos de Informática"
+    }
+]
