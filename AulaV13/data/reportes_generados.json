@@ -474,5 +474,61 @@
             ]
         ],
         "num_secciones": 4
+    },
+    {
+        "id": 18,
+        "tipo": "calificaciones",
+        "titulo": "Reporte de Calificaciones por Asignatura",
+        "subtitulo": "Resumen de notas y aprobaciones por asignatura",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 18:42:42",
+        "totales": [
+            [
+                "Calificaciones totales",
+                9
+            ],
+            [
+                "Aprobados",
+                8
+            ],
+            [
+                "Reprobados",
+                1
+            ],
+            [
+                "Promedio general",
+                "7.83"
+            ]
+        ],
+        "num_secciones": 2
+    },
+    {
+        "id": 19,
+        "tipo": "calificaciones",
+        "titulo": "Reporte de Calificaciones por Asignatura",
+        "subtitulo": "Resumen de notas y aprobaciones por asignatura",
+        "generado_por": "coordinacion@nivelacion.edu.ec",
+        "rol_generador": "coordinador",
+        "fecha": "2026-06-16 18:43:10",
+        "totales": [
+            [
+                "Calificaciones totales",
+                9
+            ],
+            [
+                "Aprobados",
+                8
+            ],
+            [
+                "Reprobados",
+                1
+            ],
+            [
+                "Promedio general",
+                "7.83"
+            ]
+        ],
+        "num_secciones": 2
     }
 ]
