@@ -143,6 +143,21 @@ class SistemaAcademicoApp:
         if not email or not pwd:
             self._err_lbl.config(text="⚠  Ingrese su correo y contraseña institucionales.")
             return
+        # Depuración: mostrar información útil sin imprimir la contraseña completa
+        try:
+            import unicodedata
+            def _norm(s: str) -> str:
+                if s is None: return ""
+                s2 = unicodedata.normalize("NFKD", s.strip())
+                s2 = "".join(ch for ch in s2 if not unicodedata.combining(ch))
+                return s2.casefold()
+        except Exception:
+            def _norm(s: str) -> str:
+                return (s or "").strip().casefold()
+
+        exact = email in self.repo.usuarios
+        matches = [k for k in self.repo.usuarios.keys() if _norm(k) == _norm(email)]
+        print(f"[DEBUG] intento login email={repr(email)} pwd_len={len(pwd)} exact_key={exact} norm_matches={matches}")
         user = self.auth.login(email, pwd)
         if user:
             self.current_user = user
