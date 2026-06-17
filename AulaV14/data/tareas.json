@@ -1,0 +1,96 @@
+[
+    {
+        "id": 1,
+        "titulo": "Ejercicios de Álgebra – Semana 1",
+        "descripcion": "Resolver los ejercicios 1 al 20 del capítulo de álgebra básica. Incluir desarrollo paso a paso de cada ejercicio.",
+        "fecha_limite": "2026-06-09",
+        "creador_email": "marco.villacis@nivelacion.edu.ec",
+        "asignatura_id": 1,
+        "entregas": [
+            {
+                "estudiante_email": "carlos.mendoza@nivelacion.edu.ec",
+                "descripcion": "Adjunto hoja de ejercicios resuelta",
+                "archivo": "Algebra_Carlos.pdf",
+                "fecha": "2026-06-05 20:14",
+                "estado": "Realizada"
+            },
+            {
+                "estudiante_email": "luis.alvarado@nivelacion.edu.ec",
+                "descripcion": "Desarrollo completo con pasos",
+                "archivo": "Algebra_Luis.pdf",
+                "fecha": "2026-06-06 08:30",
+                "estado": "Realizada"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "titulo": "Redacción: Ensayo Argumentativo",
+        "descripcion": "Redactar un ensayo argumentativo de 500 palabras mínimo sobre la importancia de la educación superior en el Ecuador.",
+        "fecha_limite": "2026-06-11",
+        "creador_email": "diana.pacheco@nivelacion.edu.ec",
+        "asignatura_id": 2,
+        "entregas": [
+            {
+                "estudiante_email": "valeria.torres@nivelacion.edu.ec",
+                "descripcion": "Ensayo sobre educación superior",
+                "archivo": "Ensayo_Valeria.docx",
+                "fecha": "2026-06-04 18:45",
+                "estado": "Realizada"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "titulo": "Práctica de Razonamiento Lógico – Serie 1",
+        "descripcion": "Completar las series numéricas y completar las analogías verbales propuestas en la guía. Tiempo estimado: 90 minutos.",
+        "fecha_limite": "2026-06-08",
+        "creador_email": "marco.villacis@nivelacion.edu.ec",
+        "asignatura_id": 3,
+        "entregas": []
+    },
+    {
+        "id": 4,
+        "titulo": "Laboratorio – Pseudocódigo y Diagramas de Flujo",
+        "descripcion": "Diseñar un diagrama de flujo y su pseudocódigo para los 3 algoritmos indicados en la guía de laboratorio No. 1.",
+        "fecha_limite": "2026-06-13",
+        "creador_email": "sofia.naranjo@nivelacion.edu.ec",
+        "asignatura_id": 4,
+        "entregas": []
+    },
+    {
+        "id": 5,
+        "titulo": "Informe de Laboratorio – Células y Tejidos",
+        "descripcion": "Presentar informe de la práctica de microscopía. Incluir esquemas de las estructuras observadas, conclusiones y bibliografía en formato APA.",
+        "fecha_limite": "2026-06-10",
+        "creador_email": "roberto.espinoza@nivelacion.edu.ec",
+        "asignatura_id": 5,
+        "entregas": [
+            {
+                "estudiante_email": "luis.alvarado@nivelacion.edu.ec",
+                "descripcion": "Informe con fotos del microscopio",
+                "archivo": "Informe_Celulas_Luis.pdf",
+                "fecha": "2026-06-05 22:10",
+                "estado": "Realizada"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "titulo": "Problemas de Estequiometría",
+        "descripcion": "Resolver los 10 problemas de estequiometría del módulo 2. Mostrar todos los pasos con unidades.",
+        "fecha_limite": "2026-06-12",
+        "creador_email": "roberto.espinoza@nivelacion.edu.ec",
+        "asignatura_id": 6,
+        "entregas": []
+    },
+    {
+        "id": 7,
+        "titulo": "Análisis de Caso – Microeconomía",
+        "descripcion": "Leer el caso de la empresa presentada en clase y responder las preguntas de análisis aplicando conceptos de oferta y demanda.",
+        "fecha_limite": "2026-06-14",
+        "creador_email": "marco.villacis@nivelacion.edu.ec",
+        "asignatura_id": 7,
+        "entregas": []
+    }
+]
