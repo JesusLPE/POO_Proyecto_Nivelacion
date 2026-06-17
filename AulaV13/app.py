@@ -22,7 +22,7 @@ class SistemaAcademicoApp:
 
         self.root = tk.Tk()
         self.root.title("Sistema de Admisión – Proceso de Nivelación")
-        self.root.state("zoomed")
+        self.root.attributes("-zoomed", True)
         self.root.configure(bg=C["bg"])
         self.root.protocol("WM_DELETE_WINDOW", self._confirmar_salida)
         aplicar_estilo()
