@@ -5,7 +5,9 @@
         "email": "carlos.mendoza@nivelacion.edu.ec",
         "password": "Carlos2026",
         "matricula": "NIV-2026-001",
-        "carrera": "Ingeniería en Sistemas"
+        "carrera": "Ingeniería en Sistemas",
+        "curso_id": 1,
+        "horario_id": 1
     },
     {
         "nombre": "Valeria",
@@ -13,7 +15,9 @@
         "email": "valeria.torres@nivelacion.edu.ec",
         "password": "Valeria2026",
         "matricula": "NIV-2026-002",
-        "carrera": "Ingeniería en Sistemas"
+        "carrera": "Ingeniería en Sistemas",
+        "curso_id": 1,
+        "horario_id": 1
     },
     {
         "nombre": "Luis",
@@ -21,7 +25,9 @@
         "email": "luis.alvarado@nivelacion.edu.ec",
         "password": "Luis2026",
         "matricula": "NIV-2026-003",
-        "carrera": "Medicina"
+        "carrera": "Medicina",
+        "curso_id": 2,
+        "horario_id": 2
     },
     {
         "nombre": "Gabriela",
@@ -29,7 +35,9 @@
         "email": "gabriela.rios@nivelacion.edu.ec",
         "password": "Gabriela2026",
         "matricula": "NIV-2026-004",
-        "carrera": "Medicina"
+        "carrera": "Medicina",
+        "curso_id": 2,
+        "horario_id": 2
     },
     {
         "nombre": "Andrés",
@@ -37,7 +45,9 @@
         "email": "andres.castillo@nivelacion.edu.ec",
         "password": "Andres2026",
         "matricula": "NIV-2026-005",
-        "carrera": "Administración de Empresas"
+        "carrera": "Administración de Empresas",
+        "curso_id": 3,
+        "horario_id": 3
     },
     {
         "nombre": "Paola",
@@ -45,6 +55,18 @@
         "email": "paola.herrera@nivelacion.edu.ec",
         "password": "Paola2026",
         "matricula": "NIV-2026-006",
-        "carrera": "Administración de Empresas"
+        "carrera": "Administración de Empresas",
+        "curso_id": 3,
+        "horario_id": 3
+    },
+    {
+        "nombre": "Jonaiker",
+        "apellido": "Pazmiño",
+        "email": "jonaiker.pazmiño@nivelacion.edu.ec",
+        "password": "1234",
+        "matricula": "2026-007",
+        "carrera": "Psicología",
+        "curso_id": 4,
+        "horario_id": 4
     }
 ]

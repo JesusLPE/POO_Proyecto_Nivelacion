@@ -3,7 +3,7 @@
         "id": 1,
         "fecha": "2026-05-27",
         "tipo": "Regular",
-        "estado": "Activa",
+        "estado": "Anulada",
         "segunda": false,
         "estudiante_email": "carlos.mendoza@nivelacion.edu.ec",
         "asignatura_id": 1
