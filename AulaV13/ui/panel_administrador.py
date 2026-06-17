@@ -268,15 +268,16 @@ def _tab_matriculas(parent, repo, ms):
     wrap.pack(fill="both", expand=True)
     seccion_titulo(wrap, "Registro de Matrículas")
 
-    cols = ("ID", "Estudiante", "Carrera", "Asignatura", "Fecha", "Tipo", "Estado", "Gratuita")
-    t, _ = tree_con_scroll(wrap, cols, [35, 150, 140, 170, 90, 75, 80, 70], alto=10)
+    cols = ("ID", "Cédula", "Estudiante", "Carrera", "Asignatura", "Fecha", "Tipo", "Estado", "Gratuita")
+    t, _ = tree_con_scroll(wrap, cols, [35, 100, 145, 135, 160, 90, 75, 80, 70], alto=10)
 
     def refrescar():
         filas = []
         for m in repo.matriculas:
             est = m.estudiante
             carrera = getattr(est, "carrera", "") if est else "–"
-            filas.append((m.id, est.nombre_completo() if est else "–", carrera,
+            filas.append((m.id, getattr(est, "cedula", "") if est else "–",
+                           est.nombre_completo() if est else "–", carrera,
                            m.asignatura.nombre if m.asignatura else "–",
                            m.fecha, m.tipo, m.estado,
                            "Sí ✅" if m.verificarGratuidad() else "No ❌"))
@@ -291,7 +292,7 @@ def _tab_matriculas(parent, repo, ms):
     lbl(form, "Estudiante:", bold=True).pack(side="left")
     est_v = tk.StringVar()
     ttk.Combobox(form, textvariable=est_v,
-                 values=[f"{e.nombre_completo()}  ({e.matricula})" for e in repo.estudiantes],
+                 values=[f"{e.nombre_completo()}  - CI:{getattr(e, 'cedula', '')}  ({e.matricula})" for e in repo.estudiantes],
                  width=28).pack(side="left", padx=8, ipady=3)
 
     lbl(form, "Asignatura:", bold=True).pack(side="left")
@@ -313,7 +314,7 @@ def _tab_matriculas(parent, repo, ms):
         if not sel_asig: messagebox.showerror("Error", "Seleccione una asignatura."); return
         try: mat = sel_est.split("(")[1].rstrip(")")
         except IndexError: messagebox.showerror("Error", "Estudiante inválido."); return
-        est = next((e for e in repo.estudiantes if e.matricula == mat), None)
+        est = next((e for e in repo.estudiantes if e.matricula == mat or getattr(e, "cedula", "") == mat), None)
         if not est: messagebox.showerror("Error", "Estudiante no encontrado."); return
         try: aid = int(sel_asig.split("ID:")[1].rstrip(")").strip())
         except (ValueError, IndexError): messagebox.showerror("Error", "Asignatura inválida."); return

@@ -412,8 +412,8 @@ def _tab_matriculas(parent, repo, ms):
                        bg=C["bg"], font=("Segoe UI", 9),
                        command=lambda: refrescar()).pack(side="left", padx=8)
 
-    cols = ("ID", "Estudiante", "Carrera", "Asignatura", "Fecha", "Tipo", "Estado", "Gratuita")
-    t, _ = tree_con_scroll(wrap, cols, [35, 160, 140, 170, 90, 75, 80, 70], alto=10)
+    cols = ("ID", "Cédula", "Estudiante", "Carrera", "Asignatura", "Fecha", "Tipo", "Estado", "Gratuita")
+    t, _ = tree_con_scroll(wrap, cols, [35, 100, 150, 135, 160, 90, 75, 80, 70], alto=10)
 
     def refrescar():
         filtro = fil_v.get()
@@ -422,7 +422,8 @@ def _tab_matriculas(parent, repo, ms):
             if filtro != "Todos" and m.estado != filtro: continue
             est = m.estudiante
             carrera = getattr(est, "carrera", "") if est else "–"
-            filas.append((m.id, est.nombre_completo() if est else "–",
+            filas.append((m.id, getattr(est, "cedula", "") if est else "–",
+                           est.nombre_completo() if est else "–",
                            carrera, m.asignatura.nombre if m.asignatura else "–",
                            m.fecha, m.tipo, m.estado,
                            "Sí ✅" if m.verificarGratuidad() else "No ❌"))

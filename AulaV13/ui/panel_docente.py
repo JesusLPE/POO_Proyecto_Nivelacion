@@ -249,8 +249,8 @@ def _tab_calificaciones(parent, usuario, repo, cs):
     wrap.pack(fill="both", expand=True)
     seccion_titulo(wrap, "Registro de Calificaciones")
 
-    cols = ("Estudiante", "Carrera", "Asignatura", "Nota", "Estado", "Observación")
-    t, _ = tree_con_scroll(wrap, cols, [180, 160, 180, 60, 110, 180], alto=11)
+    cols = ("Cédula", "Estudiante", "Carrera", "Asignatura", "Nota", "Estado", "Observación")
+    t, _ = tree_con_scroll(wrap, cols, [100, 170, 150, 170, 60, 110, 170], alto=11)
 
     def refrescar():
         filas = []
@@ -258,7 +258,7 @@ def _tab_calificaciones(parent, usuario, repo, cs):
             est = c.estudiante
             carrera = getattr(est, "carrera", "")
             estado = Notas.estado(c.nota)
-            filas.append((est.nombre_completo(), carrera,
+            filas.append((getattr(est, "cedula", ""), est.nombre_completo(), carrera,
                            c.asignatura, f"{c.nota:.1f}", estado, c.observacion))
         refrescar_tree(t, filas)
     refrescar()
@@ -273,7 +273,7 @@ def _tab_calificaciones(parent, usuario, repo, cs):
 
     lbl(form, "Estudiante:", bold=True).pack(side="left")
     est_v = tk.StringVar()
-    est_vals = [f"{e.nombre_completo()}  ({e.matricula})" for e in repo.estudiantes]
+    est_vals = [f"{e.nombre_completo()}  - CI:{getattr(e, 'cedula', '')}  ({e.matricula})" for e in repo.estudiantes]
     ttk.Combobox(form, textvariable=est_v, values=est_vals, width=30
                  ).pack(side="left", padx=8, ipady=3)
 
@@ -300,7 +300,7 @@ def _tab_calificaciones(parent, usuario, repo, cs):
         except ValueError:
             messagebox.showerror("Error", "La nota debe ser un número entre 0 y 10."); return
         mat = sel.split("(")[1].rstrip(")")
-        est = next((e for e in repo.estudiantes if e.matricula == mat), None)
+        est = next((e for e in repo.estudiantes if e.matricula == mat or getattr(e, "cedula", "") == mat), None)
         if not est: messagebox.showerror("Error", "Estudiante no encontrado."); return
         ok, msg = cs.registrar(est.email, asig_v.get(), nota, obs_e.get().strip())
         if ok:

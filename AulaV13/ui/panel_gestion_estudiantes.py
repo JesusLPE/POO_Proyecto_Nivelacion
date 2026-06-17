@@ -16,7 +16,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 from ui.base import C, btn, lbl, tree_con_scroll, refrescar_tree, ventana_modal, seccion_titulo
 from ui.shared import seleccionar_carrera
-from services.academico import UsuarioService, AuthService
+from services.academico import UsuarioService, AuthService, validar_cedula_ecuatoriana
 
 
 def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
@@ -37,8 +37,8 @@ def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
                   "está reservada al Administrador.",
             size=9, color=C["text_sec"]).pack(anchor="w", pady=(0, 8))
 
-    cols = ("Email", "Nombre completo", "Matrícula", "Carrera", "Curso", "Horario", "Estado")
-    t, _ = tree_con_scroll(wrap, cols, [210, 170, 110, 160, 200, 130, 90], alto=12)
+    cols = ("Email", "Cédula", "Nombre completo", "Matrícula", "Carrera", "Curso", "Horario", "Estado")
+    t, _ = tree_con_scroll(wrap, cols, [200, 100, 160, 105, 150, 190, 125, 90], alto=12)
 
     def _curso_nombre(curso_id):
         c = repo.curso_por_id(curso_id)
@@ -54,7 +54,7 @@ def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
         filas = []
         for e in repo.estudiantes:
             estado = "Activo" if e.curso_id else "Sin grupo / Baja"
-            filas.append((e.email, e.nombre_completo(), e.matricula, e.carrera,
+            filas.append((e.email, getattr(e, "cedula", ""), e.nombre_completo(), e.matricula, e.carrera,
                            _curso_nombre(e.curso_id), _horario_texto(e.horario_id), estado))
         refrescar_tree(t, filas)
     refrescar()
@@ -134,6 +134,7 @@ def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
 
         campos = {}
         for etq, key, show in [("Nombre *:", "nombre", ""), ("Apellido *:", "apellido", ""),
+                                ("Cédula *:", "cedula", ""),
                                 ("Correo electrónico *:", "email", ""),
                                 ("Contraseña inicial *:", "pwd", "*"),
                                 ("Matrícula *:", "matricula", "")]:
@@ -147,11 +148,14 @@ def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
         def guardar():
             nombre   = campos["nombre"].get().strip()
             apellido = campos["apellido"].get().strip()
+            cedula   = campos["cedula"].get().strip()
             email    = campos["email"].get().strip()
             pwd      = campos["pwd"].get()
             mat      = campos["matricula"].get().strip()
-            if not all([nombre, apellido, email, pwd, mat]):
+            if not all([nombre, apellido, cedula, email, pwd, mat]):
                 err_lbl.config(text="Todos los campos son obligatorios."); return
+            if not validar_cedula_ecuatoriana(cedula):
+                err_lbl.config(text="Ingrese una cédula ecuatoriana válida."); return
             if not AuthService(repo).validar_email(email):
                 err_lbl.config(text="El correo electrónico no es válido."); return
 
@@ -163,7 +167,7 @@ def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
             if curso_id is None or horario_id is None:
                 err_lbl.config(text="Debe seleccionar curso y horario para continuar."); return
 
-            ok, msg = us.crear_estudiante(nombre, apellido, email, pwd, mat, car,
+            ok, msg = us.crear_estudiante(nombre, apellido, email, pwd, cedula, mat, car,
                                           curso_id=curso_id, horario_id=horario_id)
             if ok:
                 messagebox.showinfo("✅", msg); refrescar(); v.destroy()
@@ -180,7 +184,7 @@ def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
         est = repo.usuarios.get(email)
         if not est: return
 
-        v = ventana_modal(wrap.winfo_toplevel(), f"Editar: {est.nombre_completo()}", 460, 360)
+        v = ventana_modal(wrap.winfo_toplevel(), f"Editar: {est.nombre_completo()}", 460, 410)
         body = tk.Frame(v, bg=C["bg"], padx=20, pady=16); body.pack(fill="both", expand=True)
 
         lbl(body, "Nombre:", bold=True).pack(anchor="w")
@@ -190,6 +194,10 @@ def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
         lbl(body, "Apellido:", bold=True).pack(anchor="w")
         ape_e = ttk.Entry(body, width=50); ape_e.insert(0, est.apellido)
         ape_e.pack(fill="x", ipady=4, pady=(2, 8))
+
+        lbl(body, "Cédula:", bold=True).pack(anchor="w")
+        ced_e = ttk.Entry(body, width=50); ced_e.insert(0, getattr(est, "cedula", ""))
+        ced_e.pack(fill="x", ipady=4, pady=(2, 8))
 
         lbl(body, "Carrera:", bold=True).pack(anchor="w")
         car_e = ttk.Entry(body, width=50); car_e.insert(0, est.carrera)
@@ -217,7 +225,7 @@ def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
         def guardar_datos():
             ok, msg = us.editar_estudiante(
                 est.email, nombre=nom_e.get().strip(),
-                apellido=ape_e.get().strip(), carrera=car_e.get().strip())
+                apellido=ape_e.get().strip(), cedula=ced_e.get().strip(), carrera=car_e.get().strip())
             if ok:
                 messagebox.showinfo("✅", msg); refrescar(); v.destroy()
             else:
@@ -231,7 +239,7 @@ def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
         sel = t.selection()
         if not sel: messagebox.showerror("Error", "Seleccione un estudiante."); return
         email = t.item(sel[0])["values"][0]
-        nombre = t.item(sel[0])["values"][1]
+        nombre = t.item(sel[0])["values"][2]
         if messagebox.askyesno("Confirmar baja",
                                f"¿Dar de baja a {nombre}?\n\n"
                                "Se anularán sus matrículas activas y se liberará "
@@ -245,7 +253,7 @@ def construir_tab(parent, repo, usuario_actual, puede_crear: bool):
         sel = t.selection()
         if not sel: messagebox.showerror("Error", "Seleccione un estudiante."); return
         email = t.item(sel[0])["values"][0]
-        nombre = t.item(sel[0])["values"][1]
+        nombre = t.item(sel[0])["values"][2]
         if messagebox.askyesno("Confirmar eliminación",
                                f"¿Eliminar permanentemente a {nombre} ({email})?\n"
                                "Esta acción no se puede deshacer."):
