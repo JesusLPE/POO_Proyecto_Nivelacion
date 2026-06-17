@@ -1,0 +1,79 @@
+[
+    {
+        "nombre": "Carlos",
+        "apellido": "Mendoza",
+        "email": "carlos.mendoza@nivelacion.edu.ec",
+        "password": "Carlos2026",
+        "matricula": "NIV-2026-001",
+        "carrera": "Ingeniería en Sistemas",
+        "curso_id": 1,
+        "horario_id": 1,
+        "cedula": "0912345675"
+    },
+    {
+        "nombre": "Valeria",
+        "apellido": "Torres",
+        "email": "valeria.torres@nivelacion.edu.ec",
+        "password": "Valeria2026",
+        "matricula": "NIV-2026-002",
+        "carrera": "Ingeniería en Sistemas",
+        "curso_id": 1,
+        "horario_id": 1,
+        "cedula": "0923456784"
+    },
+    {
+        "nombre": "Luis",
+        "apellido": "Alvarado",
+        "email": "luis.alvarado@nivelacion.edu.ec",
+        "password": "Luis2026",
+        "matricula": "NIV-2026-003",
+        "carrera": "Medicina",
+        "curso_id": 2,
+        "horario_id": 2,
+        "cedula": "0934567892"
+    },
+    {
+        "nombre": "Gabriela",
+        "apellido": "Ríos",
+        "email": "gabriela.rios@nivelacion.edu.ec",
+        "password": "Gabriela2026",
+        "matricula": "NIV-2026-004",
+        "carrera": "Medicina",
+        "curso_id": 2,
+        "horario_id": 2,
+        "cedula": "1312345678"
+    },
+    {
+        "nombre": "Andrés",
+        "apellido": "Castillo",
+        "email": "andres.castillo@nivelacion.edu.ec",
+        "password": "Andres2026",
+        "matricula": "NIV-2026-005",
+        "carrera": "Administración de Empresas",
+        "curso_id": 3,
+        "horario_id": 3,
+        "cedula": "1323456789"
+    },
+    {
+        "nombre": "Paola",
+        "apellido": "Herrera",
+        "email": "paola.herrera@nivelacion.edu.ec",
+        "password": "Paola2026",
+        "matricula": "NIV-2026-006",
+        "carrera": "Administración de Empresas",
+        "curso_id": 3,
+        "horario_id": 3,
+        "cedula": "1305928471"
+    },
+    {
+        "nombre": "Jonaiker",
+        "apellido": "Pazmiño",
+        "email": "jonaiker.pazmiño@nivelacion.edu.ec",
+        "password": "1234",
+        "matricula": "2026-007",
+        "carrera": "Psicología",
+        "curso_id": 4,
+        "horario_id": 4,
+        "cedula": "1307582946"
+    }
+]
