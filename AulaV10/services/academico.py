@@ -8,7 +8,7 @@ from typing import Optional, Tuple
 
 from factories.usuario_factory import UsuarioFactory
 from models import (Asignatura, Curso, Horario, Modalidad,
-                    Matricula, Tarea, Calificacion, Notas)
+                    Matricula, Tarea, Calificacion, Notas, SolicitudRetiro, Cronograma)
 from repositories.repositorio_academico import RepositorioAcademico
 
 
@@ -19,9 +19,37 @@ class AuthService:
         self._repo = repo
 
     def login(self, email: str, password: str):
-        user = self._repo.usuarios.get(email.strip())
-        if user and user.iniciarSesion(email.strip(), password):
+        # Intento rápido por clave exacta (optimización)
+        key = email.strip()
+        user = self._repo.usuarios.get(key)
+        if user and user.iniciarSesion(key, password):
             return user
+
+        # Si no hay coincidencia exacta, buscar de forma tolerante a mayúsculas
+        # y diacríticos para evitar problemas con "ñ" u otras variaciones.
+        try:
+            import unicodedata
+        except Exception:
+            unicodedata = None
+
+        def _norm(s: str) -> str:
+            if s is None:
+                return ""
+            s2 = s.strip()
+            if unicodedata:
+                s2 = unicodedata.normalize("NFKD", s2)
+                # eliminar marcas diacríticas
+                s2 = "".join(ch for ch in s2 if not unicodedata.combining(ch))
+            return s2.casefold()
+
+        target = _norm(email)
+        for u in self._repo.usuarios.values():
+            if _norm(u.email) == target:
+                # llamar con el email real del usuario para que Persona.iniciarSesion
+                # compare contra su valor interno; así solo la contraseña importa.
+                if u.iniciarSesion(u.email, password):
+                    return u
+                return None
         return None
 
     def email_disponible(self, email: str) -> bool:
@@ -37,14 +65,76 @@ class UsuarioService:
     def __init__(self, repo: RepositorioAcademico):
         self._repo = repo
 
-    def crear_estudiante(self, nombre, apellido, email, pwd, matricula, carrera) -> Tuple[bool, str]:
+    def crear_estudiante(self, nombre, apellido, email, pwd, matricula, carrera,
+                         curso_id=None, horario_id=None) -> Tuple[bool, str]:
         if not AuthService(self._repo).email_disponible(email):
             return False, "El email ya está registrado"
-        obj = UsuarioFactory.crear_usuario("estudiante", nombre, apellido, email, pwd, matricula=matricula, carrera=carrera)
+        if curso_id is None or horario_id is None:
+            return False, "Debe seleccionar curso y horario para el estudiante"
+
+        obj = UsuarioFactory.crear_usuario("estudiante", nombre, apellido, email, pwd,
+                                           matricula=matricula, carrera=carrera,
+                                           curso_id=curso_id, horario_id=horario_id)
         self._repo.estudiantes.append(obj)
         self._repo.usuarios[obj.email] = obj
         self._repo.guardar_estudiantes()
-        return True, "Estudiante creado"
+
+        # ── Auto-matrícula: heredar las asignaturas activas del mismo grupo ──
+        # Busca qué asignaturas tienen los demás estudiantes activos del mismo
+        # curso_id, y crea las mismas matrículas para el nuevo estudiante.
+        # Esto garantiza que sus tareas sean visibles de inmediato.
+        ids_asig_del_grupo: set = set()
+        for m in self._repo.matriculas:
+            comparte_curso = (
+                m.estudiante
+                and m.estudiante.email != email
+                and getattr(m.estudiante, "curso_id", None) == curso_id
+                and m.estado == "Activa"
+                and m.asignatura
+            )
+            if comparte_curso:
+                ids_asig_del_grupo.add(m.asignatura.id)
+
+        if ids_asig_del_grupo:
+            fecha_hoy = datetime.now().strftime("%Y-%m-%d")
+            for asig_id in sorted(ids_asig_del_grupo):
+                asig = next((a for a in self._repo.asignaturas if a.id == asig_id), None)
+                if asig:
+                    nid = self._repo.siguiente_id(self._repo.matriculas)
+                    nueva = Matricula(nid, fecha_hoy, "Regular", "Activa", False, obj, asig)
+                    self._repo.matriculas.append(nueva)
+            self._repo.guardar_matriculas()
+            return True, (f"Estudiante creado y matriculado en "
+                          f"{len(ids_asig_del_grupo)} asignatura(s) del grupo")
+
+        return True, "Estudiante creado (sin asignaturas previas en el grupo para heredar)"
+
+    def editar_estudiante(self, email, nombre=None, apellido=None, carrera=None,
+                          curso_id=None, horario_id=None) -> Tuple[bool, str]:
+        est = self._repo.usuarios.get(email)
+        if not est or est.obtener_rol() != "estudiante":
+            return False, "Estudiante no encontrado"
+        if nombre is not None:   est.nombre = nombre
+        if apellido is not None: est.apellido = apellido
+        if carrera is not None:  est.carrera = carrera
+        if curso_id is not None:   est.curso_id = curso_id
+        if horario_id is not None: est.horario_id = horario_id
+        self._repo.guardar_estudiantes()
+        return True, "Estudiante actualizado"
+
+    def dar_de_baja(self, email: str) -> Tuple[bool, str]:
+        """Marca al estudiante como retirado: limpia curso/horario y anula sus matrículas."""
+        est = self._repo.usuarios.get(email)
+        if not est or est.obtener_rol() != "estudiante":
+            return False, "Estudiante no encontrado"
+        est.curso_id = None
+        est.horario_id = None
+        for m in self._repo.matriculas:
+            if m.estudiante and m.estudiante.email == email and m.estado == "Activa":
+                m.anular()
+        self._repo.guardar_estudiantes()
+        self._repo.guardar_matriculas()
+        return True, f"{est.nombre} fue dado de baja: curso, horario y matrículas activas anuladas"
 
     def crear_docente(self, nombre, apellido, email, pwd, especialidad) -> Tuple[bool, str]:
         if not AuthService(self._repo).email_disponible(email):
@@ -124,8 +214,10 @@ class CursoService:
         if not self._buscar(curso_id):
             return False, "Curso no encontrado"
         self._repo.cursos[:] = [c for c in self._repo.cursos if c.id != curso_id]
+        self._repo.horarios[:] = [h for h in self._repo.horarios if h.get("curso_id") != curso_id]
         self._repo.guardar_cursos()
-        return True, "Curso eliminado"
+        self._repo.guardar_horarios()
+        return True, "Curso y sus horarios fueron eliminados"
 
     def _buscar(self, curso_id: int) -> Optional[Curso]:
         return next((c for c in self._repo.cursos if c.id == curso_id), None)
@@ -341,3 +433,116 @@ class FacultadService:
 
     def facultad_de_carrera(self, carrera: str) -> str:
         return self._repo.facultad_de_carrera(carrera)
+
+
+# ── RetiroService ─────────────────────────────────────────────────────────────
+class RetiroService:
+    """SRP – solo gestiona solicitudes de retiro de materia."""
+    def __init__(self, repo: RepositorioAcademico):
+        self._repo = repo
+
+    def solicitar(self, estudiante_email: str, materia_id: int, motivo: str) -> Tuple[bool, str]:
+        est = self._repo.usuarios.get(estudiante_email)
+        if not est or est.obtener_rol() != "estudiante":
+            return False, "Estudiante no encontrado"
+        asig = next((a for a in self._repo.asignaturas if a.id == materia_id), None)
+        if not asig: return False, "Asignatura no encontrada"
+        if not motivo.strip(): return False, "Debe indicar un motivo"
+
+        matriculado = any(m.estudiante and m.estudiante.email == estudiante_email
+                          and m.asignatura and m.asignatura.id == materia_id
+                          and m.estado == "Activa" for m in self._repo.matriculas)
+        if not matriculado:
+            return False, f"No está matriculado activamente en {asig.nombre}"
+
+        ya_pendiente = any(s.estudiante_id == estudiante_email and s.materia_id == materia_id
+                           and s.esta_pendiente() for s in self._repo.solicitudes_retiro)
+        if ya_pendiente:
+            return False, f"Ya existe una solicitud pendiente para {asig.nombre}"
+
+        nid = self._repo.siguiente_id(self._repo.solicitudes_retiro)
+        solicitud = SolicitudRetiro(
+            id=nid, estudiante_id=estudiante_email, materia_id=materia_id,
+            motivo=motivo.strip(), estado="Pendiente",
+            fecha=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        )
+        self._repo.solicitudes_retiro.append(solicitud)
+        self._repo.guardar_solicitudes_retiro()
+        return True, f"Solicitud de retiro de {asig.nombre} enviada al coordinador"
+
+    def resolver(self, solicitud_id: int, aprobar: bool, respuesta: str = "") -> Tuple[bool, str]:
+        solicitud = next((s for s in self._repo.solicitudes_retiro if s.id == solicitud_id), None)
+        if not solicitud: return False, "Solicitud no encontrada"
+        if not solicitud.esta_pendiente():
+            return False, "Esta solicitud ya fue resuelta"
+
+        if aprobar:
+            solicitud.aprobar(respuesta)
+            # Anular la matrícula correspondiente
+            for m in self._repo.matriculas:
+                if (m.estudiante and m.estudiante.email == solicitud.estudiante_id
+                        and m.asignatura and m.asignatura.id == solicitud.materia_id
+                        and m.estado == "Activa"):
+                    m.anular()
+            self._repo.guardar_matriculas()
+            mensaje = "Solicitud aprobada. La matrícula fue anulada."
+        else:
+            solicitud.rechazar(respuesta)
+            mensaje = "Solicitud rechazada."
+
+        self._repo.guardar_solicitudes_retiro()
+        return True, mensaje
+
+    def del_estudiante(self, estudiante_email: str) -> list:
+        return self._repo.solicitudes_retiro_de(estudiante_email)
+
+    def pendientes(self) -> list:
+        return self._repo.solicitudes_retiro_pendientes()
+
+    def todas(self) -> list:
+        return self._repo.solicitudes_retiro
+
+
+# ── CronogramaService ─────────────────────────────────────────────────────────
+class CronogramaService:
+    """SRP – solo gestiona el cronograma (fechas y carga horaria) de un curso."""
+    def __init__(self, repo: RepositorioAcademico):
+        self._repo = repo
+
+    def crear(self, curso_id: int, fecha_inicio: str, fecha_fin: str,
+              total_horas: int, descripcion: str = "") -> Tuple[bool, str]:
+        curso = next((c for c in self._repo.cursos if c.id == curso_id), None)
+        if not curso: return False, "Curso no encontrado"
+        if not fecha_inicio or not fecha_fin:
+            return False, "Debe indicar fecha de inicio y fin"
+        if total_horas <= 0:
+            return False, "El total de horas debe ser positivo"
+        nid = self._repo.siguiente_id(self._repo.cronogramas)
+        crono = Cronograma(nid, curso_id, fecha_inicio, fecha_fin, total_horas, descripcion)
+        self._repo.cronogramas.append(crono)
+        self._repo.guardar_cronogramas()
+        return True, f"Cronograma creado para {curso.nombre}"
+
+    def editar(self, cronograma_id: int, fecha_inicio=None, fecha_fin=None,
+              total_horas=None, descripcion=None) -> Tuple[bool, str]:
+        crono = next((c for c in self._repo.cronogramas if c.id == cronograma_id), None)
+        if not crono: return False, "Cronograma no encontrado"
+        if fecha_inicio is not None: crono.fecha_inicio = fecha_inicio
+        if fecha_fin is not None:    crono.fecha_fin = fecha_fin
+        if total_horas is not None:  crono.total_horas = total_horas
+        if descripcion is not None:  crono.descripcion = descripcion
+        self._repo.guardar_cronogramas()
+        return True, "Cronograma actualizado"
+
+    def eliminar(self, cronograma_id: int) -> Tuple[bool, str]:
+        if not any(c.id == cronograma_id for c in self._repo.cronogramas):
+            return False, "Cronograma no encontrado"
+        self._repo.cronogramas[:] = [c for c in self._repo.cronogramas if c.id != cronograma_id]
+        self._repo.guardar_cronogramas()
+        return True, "Cronograma eliminado"
+
+    def de_curso(self, curso_id: int) -> list:
+        return [c for c in self._repo.cronogramas if c.curso_id == curso_id]
+
+    def todos(self) -> list:
+        return self._repo.cronogramas
