@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "fecha": "2026-05-27",
+        "tipo": "Regular",
+        "estado": "Anulada",
+        "segunda": false,
+        "estudiante_email": "carlos.mendoza@nivelacion.edu.ec",
+        "asignatura_id": 1
+    },
+    {
+        "id": 4,
+        "fecha": "2026-05-29",
+        "tipo": "Regular",
+        "estado": "Activa",
+        "segunda": false,
+        "estudiante_email": "valeria.torres@nivelacion.edu.ec",
+        "asignatura_id": 1
+    },
+    {
+        "id": 7,
+        "fecha": "2026-05-25",
+        "tipo": "Regular",
+        "estado": "Activa",
+        "segunda": false,
+        "estudiante_email": "luis.alvarado@nivelacion.edu.ec",
+        "asignatura_id": 5
+    },
+    {
+        "id": 10,
+        "fecha": "2026-06-01",
+        "tipo": "Segunda",
+        "estado": "Activa",
+        "segunda": true,
+        "estudiante_email": "gabriela.rios@nivelacion.edu.ec",
+        "asignatura_id": 5
+    },
+    {
+        "id": 15,
+        "fecha": "2026-05-30",
+        "tipo": "Regular",
+        "estado": "Activa",
+        "segunda": false,
+        "estudiante_email": "andres.castillo@nivelacion.edu.ec",
+        "asignatura_id": 1
+    },
+    {
+        "id": 16,
+        "fecha": "2026-06-03",
+        "tipo": "Regular",
+        "estado": "Pendiente",
+        "segunda": false,
+        "estudiante_email": "paola.herrera@nivelacion.edu.ec",
+        "asignatura_id": 7
+    }
+]
