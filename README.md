@@ -1,4 +1,4 @@
-# Sistema de Admision del Proceso de Nivelación
+# Sistema de Admision del Proceso de Nivelación de la Universidad
 
 BACUSOY PIGUAVE DIOCLES MIGUEL
 
