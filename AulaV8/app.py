@@ -1,4 +1,100 @@
-hor="w")
+
+"""app.py – Sistema de Admisión del Proceso de Nivelación v6.0"""
+import tkinter as tk
+from tkinter import ttk, messagebox
+
+from repositories.json_manager import JsonManager
+from repositories.repositorio_academico import RepositorioAcademico
+from services.academico import AuthService
+from ui.base import C, ROL_COLOR, aplicar_estilo
+import ui.panel_estudiante   as pe
+import ui.panel_docente      as pd
+import ui.panel_coordinador  as pc
+import ui.panel_administrador as pa
+
+
+class SistemaAcademicoApp:
+    """Punto de entrada. SRP: solo orquesta ventana, login y despacho de paneles."""
+
+    def __init__(self, repo: RepositorioAcademico):
+        self.repo = repo
+        self.auth = AuthService(repo)
+        self.current_user = None
+
+        self.root = tk.Tk()
+        self.root.title("Sistema de Admisión – Proceso de Nivelación")
+        self.root.state("zoomed")
+        self.root.configure(bg=C["bg"])
+        self.root.protocol("WM_DELETE_WINDOW", self._confirmar_salida)
+        aplicar_estilo()
+        self._show_login()
+
+    # ── Login ─────────────────────────────────────────────────────────────────
+    def _show_login(self):
+        self._limpiar()
+
+        # Panel izquierdo – identidad institucional
+        left = tk.Frame(self.root, bg=C["sidebar"], width=440)
+        left.pack(side="left", fill="y")
+        left.pack_propagate(False)
+
+        tk.Frame(left, bg=C["sidebar"]).pack(expand=True)
+
+        # Logo institucional simulado
+        logo_f = tk.Frame(left, bg=C["accent"], width=90, height=90)
+        logo_f.pack(pady=(0, 14))
+        logo_f.pack_propagate(False)
+        tk.Label(logo_f, text="UN", font=("Segoe UI", 28, "bold"),
+                 bg=C["accent"], fg=C["white"]).place(relx=0.5, rely=0.5, anchor="center")
+
+        tk.Label(left, text="Universidad Nacional",
+                 font=("Segoe UI", 18, "bold"), bg=C["sidebar"], fg=C["white"]).pack()
+        tk.Label(left, text="Sistema de Admisión",
+                 font=("Segoe UI", 12), bg=C["sidebar"], fg="#9FA8DA").pack(pady=2)
+        tk.Label(left, text="Proceso de Nivelación",
+                 font=("Segoe UI", 12), bg=C["sidebar"], fg="#9FA8DA").pack()
+
+        # Separador decorativo
+        sep = tk.Frame(left, bg=C["sidebar"]); sep.pack(pady=16)
+        for col, w in [(C["accent2"], 80), (C["accent"], 40), (C["sidebar2"], 20)]:
+            tk.Frame(sep, bg=col, width=w, height=3).pack(side="left", padx=2)
+
+        # Información del período
+        info_f = tk.Frame(left, bg=C["sidebar2"], padx=20, pady=14)
+        info_f.pack(fill="x", padx=24)
+        tk.Label(info_f, text="Período Académico 2026",
+                 font=("Segoe UI", 10, "bold"), bg=C["sidebar2"], fg=C["white"]).pack(anchor="w")
+        from datetime import datetime
+        tk.Label(info_f, text=f"Ciclo de nivelación activo  ·  {datetime.now().strftime('%d/%m/%Y')}",
+                 font=("Segoe UI", 9), bg=C["sidebar2"], fg="#C5CAE9").pack(anchor="w")
+
+        # Roles disponibles
+        roles_f = tk.Frame(left, bg=C["sidebar"]); roles_f.pack(pady=16)
+        for rol, col in ROL_COLOR.items():
+            etq = {"estudiante": "Estudiante", "docente": "Docente",
+                   "coordinador": "Coordinador", "administrador": "Administrador"}.get(rol, rol)
+            tk.Label(roles_f, text=f"  {etq}  ", bg=col, fg=C["white"],
+                     font=("Segoe UI", 8, "bold"), padx=6, pady=3).pack(side="left", padx=2)
+
+        tk.Frame(left, bg=C["sidebar"]).pack(expand=True)
+        tk.Label(left, text="© 2026  Universidad Nacional  ·  Todos los derechos reservados",
+                 font=("Segoe UI", 8), bg=C["sidebar"], fg="#5C6BC0",
+                 wraplength=380, justify="center").pack(pady=12, padx=20)
+
+        # Panel derecho – formulario
+        right = tk.Frame(self.root, bg=C["bg"])
+        right.pack(side="left", fill="both", expand=True)
+        form_wrap = tk.Frame(right, bg=C["bg"])
+        form_wrap.place(relx=0.5, rely=0.5, anchor="center")
+
+        tk.Label(form_wrap, text="Bienvenido",
+                 font=("Segoe UI", 24, "bold"), bg=C["bg"], fg=C["sidebar"]).pack(pady=(0, 4))
+        tk.Label(form_wrap, text="Ingrese sus credenciales institucionales para continuar",
+                 font=("Segoe UI", 10), bg=C["bg"], fg=C["text_sec"]).pack(pady=(0, 24))
+
+        # Campo email
+        tk.Label(form_wrap, text="Correo institucional",
+                 font=("Segoe UI", 10, "bold"), bg=C["bg"], fg=C["text"]).pack(anchor="w")
         self._email_e = ttk.Entry(form_wrap, width=40, font=("Segoe UI", 11))
         self._email_e.pack(ipady=5, pady=(2, 14), fill="x")
 
