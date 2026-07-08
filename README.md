@@ -12,7 +12,7 @@ PAZMIÑO BAZURTO CARLOS JONAIKER
 
 VERA BAILON EDDY ALEXANDER
 
-##Temas Aplicados##
+## Temas Aplicados
 
 #Abstracción
 
