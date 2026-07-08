@@ -1,3 +1,5 @@
+""""""
+
 
 """app.py – Sistema de Admisión del Proceso de Nivelación v6.0"""
 import tkinter as tk
