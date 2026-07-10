@@ -14,24 +14,24 @@ VERA BAILON EDDY ALEXANDER
 
 # Temas Aplicados
 
-#Abstracción
+1. Abstracción
 
-#Relaciones entre clases
+2. Relaciones entre clases
 
-#Encapsulamiento
+3. Encapsulamiento
 
-#Propiedades
+4. Propiedades
 
-#Sobrecarga mediante una tabla de excel de 1.000 estudaintes
+5. Sobrecarga mediante una tabla de excel de 1.000 estudaintes
 
-#Herencias - Polimorfismo - Interfaces
+6. Herencias - Polimorfismo - Interfaces
 
-#Inyecciones de dependencias
+7. Inyecciones de dependencias
 
-#Principios SOLID
+8. Principios SOLID
 
-#Patrón de diseño Creacional: Factory Method
+9. Patrón de diseño Creacional: Factory Method
 
-#Patrón de diseño Estructural: Facade
+10. Patrón de diseño Estructural: Facade
 
-#Patrón de diseño Comportamiento: Strategy
+11. Patrón de diseño Comportamiento: Strategy
